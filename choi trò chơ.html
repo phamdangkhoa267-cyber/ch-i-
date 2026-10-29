@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Giúp em bé ngủ ngon</title>
+<style>
+:root{--bg:#fdf3ff;--card:#fff;--ink:#3a2350;--mute:#7a6590;--pri:#8a4fd8;--pri2:#6d36b8;--ok:#2e9e5b;--bad:#d64550;--line:#e4d4f5;--sky1:#cfe8ff;--sky2:#f6e1ff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171024;--card:#251a38;--ink:#f3e9ff;--mute:#b8a6d4;--pri:#a878ee;--pri2:#c19cff;--line:#3d2c58;--sky1:#1c2b5a;--sky2:#4a2a6e}}
+:root[data-theme="dark"]{--bg:#171024;--card:#251a38;--ink:#f3e9ff;--mute:#b8a6d4;--pri:#a878ee;--pri2:#c19cff;--line:#3d2c58;--sky1:#1c2b5a;--sky2:#4a2a6e}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",system-ui,Arial,sans-serif;line-height:1.5}
+main{max-width:760px;margin:0 auto;padding:16px}
+h1{font-size:1.6rem;text-align:center;margin:8px 0}
+.sub{text-align:center;color:var(--mute);margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
+.card h3{margin:0 0 8px;font-size:1rem;color:var(--pri2)}
+input[type=text]{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;margin-bottom:6px}
+.opt{display:flex;align-items:center;gap:8px}
+.opt input[type=radio]{accent-color:var(--pri);width:18px;height:18px;flex:none;margin:0 0 6px}
+.hint{font-size:.85rem;color:var(--mute);margin:0 0 6px}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:11px 18px;background:var(--pri);color:#fff;font-weight:600}
+button:hover{background:var(--pri2)}
+button.ghost{background:transparent;color:var(--pri2);border:1px solid var(--line)}
+.center{text-align:center}
+.hidden{display:none}
+.bar{display:flex;gap:6px;justify-content:center;margin:8px 0}
+.dot{width:14px;height:14px;border-radius:50%;background:var(--line);transition:.4s}
+.dot.on{background:var(--ok);transform:scale(1.2)}
+svg{width:100%;height:auto;border-radius:16px;display:block;border:1px solid var(--line)}
+.thorn{transition:opacity 1s,transform 1s ease-in}
+.bob{animation:bob 1.4s ease-in-out infinite alternate}
+@keyframes bob{from{transform:translate(-5px,-4px)}to{transform:translate(5px,5px)}}
+.thorn .wing{animation:flap .07s infinite alternate}
+.thorn.gone{opacity:0;transform:translate(var(--fx),-140px)}
+#qtext{font-size:1.15rem;font-weight:700;margin:0 0 10px}
+.ans{display:block;width:100%;text-align:left;margin-bottom:8px;background:var(--bg);color:var(--ink);border:2px solid var(--line)}
+.ans:hover{border-color:var(--pri);background:var(--bg)}
+.ans.wrong{border-color:var(--bad);opacity:.55;animation:shake .35s}
+.ans.right{border-color:var(--ok);background:var(--ok);color:#fff}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+#msg{min-height:1.5em;text-align:center;font-weight:600}
+.eyes-open{display:none}.woke .eyes-open{display:inline}.woke .eyes-shut,.woke .zzz{display:none}
+.spark{display:none}.woke .spark{display:inline;animation:tw 1s infinite alternate}
+@keyframes tw{to{opacity:.3}}
+.zzz{animation:tw 1.2s infinite alternate}
+.err{color:var(--bad);text-align:center;min-height:1.4em}
+.m{transform:translate(var(--sx),var(--sy))}
+.go .m{animation:fly 4s ease-in-out forwards}
+@keyframes fly{0%{transform:translate(var(--sx),var(--sy))}35%{transform:translate(calc(var(--ex)*.6 + 40px),calc(var(--ey)*.5 - 40px))}65%{transform:translate(calc(var(--ex)*.9 - 30px),calc(var(--ey) - 55px))}100%{transform:translate(var(--ex),var(--ey))}}
+.wing{transform-box:fill-box;transform-origin:center}
+.go .wing{animation:flap .08s infinite alternate}
+.frozen .wing{animation:none}
+@keyframes flap{to{transform:scaleY(.25)}}
+.bang{opacity:0;transition:opacity .3s}.frozen .bang{opacity:1}
+.cta{text-align:center;opacity:0;transform:translateY(8px);transition:.8s;pointer-events:none;margin:14px 0}
+.cta.show{opacity:1;transform:none;pointer-events:auto}
+.cta p{font-weight:700;font-size:1.1rem;margin:0 0 10px}
+#playbtn{font-size:1.15rem;padding:13px 28px}
+.reveal{text-align:center;border:2px solid var(--pri);animation:pop .6s}
+.rname{font-size:2rem;font-weight:800;color:var(--pri2);margin:4px 0}
+.rgift{font-size:1.1rem;font-weight:600}
+@keyframes pop{from{transform:scale(.6);opacity:0}}
+#snd{position:fixed;top:calc(env(safe-area-inset-top,0px) + 8px);right:10px;z-index:20;padding:6px 11px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:999px;font-size:1.1rem}
+#pd{display:none}
+.woke #pr{display:none}
+.woke #pd{display:inline;transform-origin:200px 224px;animation:stand .9s ease-out both,dance .45s .9s ease-in-out infinite alternate}
+@keyframes stand{from{opacity:0;transform:translate(-30px,25px) rotate(-80deg)}to{opacity:1;transform:none}}
+@keyframes dance{from{transform:translateY(0) rotate(-5deg)}to{transform:translateY(-12px) rotate(5deg)}}
+.woke .aL{transform-origin:190px 158px;animation:wl .4s ease-in-out infinite alternate}
+.woke .aR{transform-origin:210px 158px;animation:wr .4s ease-in-out infinite alternate}
+@keyframes wl{from{transform:rotate(-30deg)}to{transform:rotate(25deg)}}
+@keyframes wr{from{transform:rotate(30deg)}to{transform:rotate(-25deg)}}
+.cf{position:fixed;top:-30px;font-size:24px;animation:fall 3.2s linear forwards;pointer-events:none;z-index:9}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+#game.fs{position:fixed;inset:0;z-index:15;background:var(--bg);overflow:auto;padding:calc(env(safe-area-inset-top,0px) + 10px) 14px 14px}
+#game.fs #scene{max-height:62vh}
+.thorn{cursor:pointer}.thorn.gone{pointer-events:none}.thorn:hover{filter:drop-shadow(0 0 6px #ffd34d)}
+#qmodal{position:fixed;inset:0;background:rgba(20,10,40,.65);display:flex;align-items:center;justify-content:center;padding:16px;z-index:30}
+#qmodal.hidden{display:none}
+textarea{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;margin-bottom:6px;resize:vertical;min-height:70px}
+.gift #teach,.gift #edit,.gift #edit2{display:none}
+#qbox{background:var(--card);border:2px solid var(--pri);border-radius:18px;padding:16px;max-width:520px;width:100%;max-height:90vh;overflow:auto;animation:pop .35s}
+</style>
+</head>
+<body>
+<button id="snd" aria-label="Bật hoặc tắt âm thanh">🔊</button>
+<main>
+<h1>🍼 Giúp em bé ngủ ngon</h1>
+
+<section id="intro">
+<svg id="iscene" viewBox="0 0 400 260" role="img" aria-label="Em bé đang ngủ, bốn con muỗi bay tới sắp cắn">
+<defs><linearGradient id="nt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f1740"/><stop offset="1" stop-color="#2a2060"/></linearGradient></defs>
+<rect width="400" height="260" fill="url(#nt)"/>
+<rect x="30" y="25" width="70" height="80" rx="6" fill="#1b2a63" stroke="#8d7a5a" stroke-width="4"/>
+<circle cx="62" cy="55" r="14" fill="#fff6c9"/><circle cx="70" cy="51" r="12" fill="#1b2a63"/>
+<g fill="#fff"><circle cx="85" cy="85" r="1.5"/><circle cx="45" cy="90" r="1.2"/><circle cx="330" cy="40" r="1.5"/><circle cx="360" cy="80" r="1.2"/></g>
+<rect y="215" width="400" height="45" fill="#3a2a4f"/>
+<rect x="80" y="190" width="250" height="12" rx="3" fill="#7a4e32"/><rect x="86" y="200" width="10" height="22" fill="#7a4e32"/><rect x="314" y="200" width="10" height="22" fill="#7a4e32"/>
+<rect x="88" y="172" width="234" height="20" rx="6" fill="#f4ecff"/>
+<rect x="98" y="150" width="62" height="26" rx="12" fill="#fff"/>
+
+<circle cx="138" cy="160" r="18" fill="#ffe0c8"/>
+<path d="M138 143 q-6 -10 2 -12 q6 2 -2 12z" fill="#4a2f20"/>
+<path d="M131 161 q3 3 6 0 M142 161 q3 3 6 0" stroke="#5a3a2a" stroke-width="1.5" fill="none"/><circle cx="150" cy="167" r="3" fill="#ffb3b3" opacity=".7"/>
+<rect x="154" y="162" width="100" height="30" rx="14" fill="#7fc8e8"/><path d="M178 164 v26 M202 164 v26 M226 164 v26" stroke="#a8dcf2" stroke-width="3"/>
+<ellipse cx="188" cy="160" rx="10" ry="5" fill="#ffe0c8"/>
+<ellipse cx="262" cy="184" rx="7" ry="5" fill="#ffe0c8"/>
+<g class="zzz" fill="#cfd8ff" font-weight="700"><text x="100" y="135" font-size="18">Z</text><text x="115" y="118" font-size="14">z</text><text x="126" y="104" font-size="11">z</text></g>
+<g id="mq"></g>
+</svg>
+<div class="cta" id="cta"><p>🦟 Muỗi sắp cắn em bé rồi! Mau giúp em bé nào!</p><button id="playbtn">▶ Bắt đầu chơi</button></div>
+<div class="center"><button class="ghost" id="teach">⚙️ Nhập câu hỏi (dành cho giáo viên)</button></div>
+</section>
+
+<section id="setup" class="hidden">
+<p class="sub">Thầy/cô nhập 4 câu hỏi. Mỗi đáp án, chọn nút tròn ở đáp án đúng.</p>
+<div class="card"><h3>🎁 Nội dung hộp quà bí ẩn</h3><p class="hint">Hiện ra khi chơi xong cả 4 câu. Để trống thì dùng lời nhắn mặc định của em bé: cảm ơn các anh chị đã giúp em ngủ ngon, chúc cuối tuần vui vẻ.</p><textarea id="lmsg" placeholder="Em cảm ơn... / Thầy cô cảm ơn các em đã cùng nhau cố gắng..."></textarea><input type="text" id="lfrom" placeholder="Tên thầy/cô (không bắt buộc)..."></div>
+<div id="forms"></div>
+<div id="err" class="err"></div>
+<div class="center"><button id="savebtn">💾 Lưu câu hỏi</button> <button class="ghost" id="cancel">← Quay lại</button></div>
+</section>
+
+<section id="game" class="hidden">
+<div style="display:flex;gap:8px;align-items:center;justify-content:space-between"><button class="ghost" id="exitbtn">✕ Thoát (Esc)</button><button class="ghost" id="snd2">🔊</button></div>
+<div class="bar" id="dots"></div>
+<svg id="scene" viewBox="0 0 400 260" role="img" aria-label="Em bé đang ngủ, bị bốn con muỗi vây quanh">
+<defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--sky1)"/><stop offset="1" stop-color="var(--sky2)"/></linearGradient></defs>
+<rect width="400" height="260" fill="url(#sk)"/>
+<g fill="#2f6b45"><polygon points="20,230 50,110 80,230"/><polygon points="60,230 95,90 130,230"/><polygon points="270,230 305,95 340,230"/><polygon points="320,230 355,115 390,230"/></g>
+<rect y="215" width="400" height="45" fill="#3f8a57"/>
+<g fill="#b9a6d6"><rect x="170" y="40" width="60" height="50"/><polygon points="165,40 200,10 235,40"/><rect x="190" y="65" width="20" height="25" fill="#6d4a9a"/></g>
+<ellipse cx="200" cy="205" rx="95" ry="18" fill="#00000022"/>
+<rect x="125" y="170" width="150" height="34" rx="8" fill="#d98bb0"/>
+<g id="pr">
+<rect x="175" y="156" width="85" height="26" rx="13" fill="#bfe6f5"/>
+<circle cx="238" cy="150" r="19" fill="#ffe0c8"/>
+<path d="M238 132 q-5 -9 2 -11 q5 2 -2 11z" fill="#4a2f20"/>
+
+
+<g class="eyes-shut" stroke="#5a3a2a" stroke-width="1.6" fill="none"><path d="M230 152 q3 3 6 0"/><path d="M241 152 q3 3 6 0"/></g>
+<g class="eyes-open" fill="#3a2350"><circle cx="233" cy="152" r="2.4"/><circle cx="244" cy="152" r="2.4"/><path d="M233 160 q5 4 10 0" stroke="#d64550" stroke-width="1.5" fill="none"/></g>
+<rect x="175" y="164" width="52" height="18" rx="6" fill="#7fc8e8"/>
+</g>
+<g id="pd"><g transform="translate(200 224) scale(.8) translate(-200 -224)"><path d="M192 212 v11 M208 212 v11" stroke="#ffe0c8" stroke-width="4" stroke-linecap="round"/><ellipse cx="191" cy="225" rx="7" ry="3" fill="#c94f8a"/><ellipse cx="209" cy="225" rx="7" ry="3" fill="#c94f8a"/><g class="aL"><path d="M190 158 L167 138" stroke="#ffe0c8" stroke-width="5" stroke-linecap="round"/><circle cx="166" cy="137" r="4" fill="#ffe0c8"/></g><g class="aR"><path d="M210 158 L233 138" stroke="#ffe0c8" stroke-width="5" stroke-linecap="round"/><circle cx="234" cy="137" r="4" fill="#ffe0c8"/></g><rect x="186" y="150" width="28" height="62" rx="13" fill="#7fc8e8"/><rect x="186" y="196" width="28" height="16" rx="7" fill="#fff"/><circle cx="200" cy="138" r="19" fill="#ffe0c8"/><path d="M200 120 q-6 -10 2 -12 q6 2 -2 12z" fill="#4a2f20"/><circle cx="194" cy="139" r="2.2" fill="#3a2350"/><circle cx="206" cy="139" r="2.2" fill="#3a2350"/><circle cx="189" cy="145" r="3" fill="#ffb3b3" opacity=".7"/><circle cx="211" cy="145" r="3" fill="#ffb3b3" opacity=".7"/><path d="M194 146 q6 5 12 0" stroke="#d64550" stroke-width="1.6" fill="none" stroke-linecap="round"/></g></g>
+<g class="zzz" fill="#fff" font-size="18" font-weight="700"><text x="262" y="125">Z</text><text x="278" y="108" font-size="14">z</text><text x="290" y="94" font-size="11">z</text></g>
+<g class="spark" fill="#ffd34d" font-size="22"><text x="110" y="120">✨</text><text x="285" y="130">✨</text><text x="195" y="115">⭐</text></g>
+<g id="thorns">
+<g class="thorn" id="t0" style="--fx:-220px"><g class="bob" style="animation-delay:-.3s"><g transform="translate(150 126) scale(2.2)"><g transform="rotate(-25 1 -4)"><ellipse class="wing" cx="1" cy="-4" rx="7" ry="2.6" fill="#fff" stroke="#8a7aa8" stroke-width=".4" opacity=".85"/></g><g transform="rotate(20 3 -4)"><ellipse class="wing" cx="3" cy="-4" rx="6" ry="2.4" fill="#fff" stroke="#8a7aa8" stroke-width=".4" opacity=".75"/></g><ellipse rx="7" ry="3" fill="#2b2b3a"/><circle cx="-8" r="2.4" fill="#2b2b3a"/><circle cx="-9" cy="-.6" r="1" fill="#f33"/><path d="M-9 1 L-12 10" stroke="#2b2b3a" stroke-width="1.2"/><path d="M-3 3 l-2 5 M1 3 l0 6 M4 3 l2 5" stroke="#2b2b3a" stroke-width=".8"/></g></g></g>
+<g class="thorn" id="t1" style="--fx:-150px"><g class="bob" style="animation-delay:-.8s"><g transform="translate(205 108) scale(2.2)"><g transform="rotate(-25 1 -4)"><ellipse class="wing" cx="1" cy="-4" rx="7" ry="2.6" fill="#fff" stroke="#8a7aa8" stroke-width=".4" opacity=".85"/></g><g transform="rotate(20 3 -4)"><ellipse class="wing" cx="3" cy="-4" rx="6" ry="2.4" fill="#fff" stroke="#8a7aa8" stroke-width=".4" opacity=".75"/></g><ellipse rx="7" ry="3" fill="#2b2b3a"/><circle cx="-8" r="2.4" fill="#2b2b3a"/><circle cx="-9" cy="-.6" r="1" fill="#f33"/><path d="M-9 1 L-12 10" stroke="#2b2b3a" stroke-width="1.2"/><path d="M-3 3 l-2 5 M1 3 l0 6 M4 3 l2 5" stroke="#2b2b3a" stroke-width=".8"/></g></g></g>
+<g class="thorn" id="t2" style="--fx:150px"><g class="bob" style="animation-delay:-1.1s"><g transform="translate(255 112) scale(2.2)"><g transform="rotate(-25 1 -4)"><ellipse class="wing" cx="1" cy="-4" rx="7" ry="2.6" fill="#fff" stroke="#8a7aa8" stroke-width=".4" opacity=".85"/></g><g transform="rotate(20 3 -4)"><ellipse class="wing" cx="3" cy="-4" rx="6" ry="2.4" fill="#fff" stroke="#8a7aa8" stroke-width=".4" opacity=".75"/></g><ellipse rx="7" ry="3" fill="#2b2b3a"/><circle cx="-8" r="2.4" fill="#2b2b3a"/><circle cx="-9" cy="-.6" r="1" fill="#f33"/><path d="M-9 1 L-12 10" stroke="#2b2b3a" stroke-width="1.2"/><path d="M-3 3 l-2 5 M1 3 l0 6 M4 3 l2 5" stroke="#2b2b3a" stroke-width=".8"/></g></g></g>
+<g class="thorn" id="t3" style="--fx:220px"><g class="bob" style="animation-delay:-.1s"><g transform="translate(300 150) scale(2.2)"><g transform="rotate(-25 1 -4)"><ellipse class="wing" cx="1" cy="-4" rx="7" ry="2.6" fill="#fff" stroke="#8a7aa8" stroke-width=".4" opacity=".85"/></g><g transform="rotate(20 3 -4)"><ellipse class="wing" cx="3" cy="-4" rx="6" ry="2.4" fill="#fff" stroke="#8a7aa8" stroke-width=".4" opacity=".75"/></g><ellipse rx="7" ry="3" fill="#2b2b3a"/><circle cx="-8" r="2.4" fill="#2b2b3a"/><circle cx="-9" cy="-.6" r="1" fill="#f33"/><path d="M-9 1 L-12 10" stroke="#2b2b3a" stroke-width="1.2"/><path d="M-3 3 l-2 5 M1 3 l0 6 M4 3 l2 5" stroke="#2b2b3a" stroke-width=".8"/></g></g></g>
+</g>
+</svg>
+<div class="card" style="margin-top:12px">
+<p class="hint" id="qnum"></p>
+<p id="qtext"></p>
+<div id="answers"></div>
+<div id="msg"></div>
+</div>
+<div id="qmodal" class="hidden"><div id="qbox"><p class="hint" id="mnum"></p><p id="mtext" style="font-size:1.15rem;font-weight:700;margin:0 0 10px"></p><div id="mans"></div><div id="mmsg" style="min-height:1.5em;text-align:center;font-weight:600"></div><div class="center"><button class="ghost" id="mclose">← Chọn con muỗi khác</button></div></div></div>
+<div id="reveal" class="card reveal hidden"><div style="font-size:3rem">🎁</div><p class="hint" id="rh"></p><div class="rname" id="rn"></div><p id="rm" style="font-size:1.15rem;white-space:pre-wrap;margin:10px 0"></p><p class="hint" id="rf"></p></div>
+<div class="center" id="end" style="display:none;margin-bottom:12px">
+<button id="again">🔁 Chơi lại</button> <button class="ghost" id="edit">✏️ Sửa câu hỏi</button>
+</div>
+<div class="center" id="back"><button class="ghost" id="edit2">✏️ Sửa câu hỏi</button></div>
+</section>
+</main>
+<script>
+var KEY='quiz_princess_v3';
+var KEYL='quiz_princess_lucky_v1',L=(function(){try{var s=localStorage.getItem(KEYL);if(s)return JSON.parse(s)}catch(e){}return{n:'',g:''}})();
+var DEF=[
+{q:'Khi để cốc nước đá ngoài trời một lát, ta thấy bên ngoài cốc bị ướt và có các giọt nước bám vào. Nước bám vào đó từ đâu ra?',o:['Cái cốc bị rỉ nên nước trong cốc chảy ra bên ngoài','Hơi nước từ cốc nước đá bay ra rồi bám vào thành cốc bên ngoài','Hơi nước có sẵn trong không khí gặp thành cốc lạnh nên ngưng tụ thành các giọt nước','Thành cốc lạnh tự toát ra nước giống như toát mồ hôi'],a:2},
+{q:'Độ K do ai tạo ra?',o:['William Thomson (Lord Kelvin)','Anders Celsius','Khoa','Daniel Fahrenheit'],a:0},
+{q:'Vào những ngày hè oi bức khi đi chân trần trên bãi biển, tại sao ta thấy cát nóng bỏng rát cả chân, nhưng khi bước xuống làn nước biển thì lại cảm thấy mát rượi, dù cả cát và nước biển đều nhận được lượng nhiệt chiếu xuống như nhau từ ánh mặt trời?',o:['Cát có nhiệt dung riêng lớn hơn nước nên cùng nhiệt lượng thì nóng lên nhiều hơn','Nước có khối lượng riêng nhỏ hơn cát nên nóng lên chậm hơn','Muối trong nước biển làm nước tự lạnh đi khi nhận nhiệt','Nước có nhiệt dung riêng lớn hơn cát nhiều, nên cùng nhận một nhiệt lượng thì nước nóng lên ít hơn cát'],a:3},
+{q:'Khi một người dùng bàn tay vung mạnh và đập vào một bề mặt cứng, ngay sau va chạm, bàn tay có cảm giác nóng bừng lên và đỏ rát. Hiện tượng tay nóng lên này chủ yếu là do sự chuyển hóa năng lượng nào sau đây?',o:['Thế năng của bàn tay đã chuyển hóa hoàn toàn thành hóa năng của các tế bào.','Động năng của bàn tay đã chuyển hóa thành nội năng tại vùng tiếp xúc, làm nhiệt độ tăng lên.','Nội năng của bề mặt cứng đã truyền toàn bộ sang bàn tay dưới dạng công.','Quang năng sinh ra từ va chạm đã hấp thụ vào da tay làm tăng nhiệt độ.'],a:1}];
+var Q=load(),cur=0,$=function(i){return document.getElementById(i)};
+function load(){try{var s=localStorage.getItem(KEY);if(s){var d=JSON.parse(s);if(d&&d.length===4)return d}}catch(e){}return JSON.parse(JSON.stringify(DEF))}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(Q))}catch(e){}}
+function buildForms(){var h='';Q.forEach(function(x,i){h+='<div class="card"><h3>Câu hỏi '+(i+1)+'</h3><input type="text" id="q'+i+'" placeholder="Nhập câu hỏi..." value="'+esc(x.q)+'">';for(var j=0;j<4;j++){h+='<div class="opt"><input type="radio" name="c'+i+'" value="'+j+'"'+(x.a===j?' checked':'')+'><input type="text" id="o'+i+'_'+j+'" placeholder="Đáp án '+'ABCD'[j]+'" value="'+esc(x.o[j]||'')+'"></div>'}h+='</div>'});$('forms').innerHTML=h;$('lmsg').value=L.m||'';$('lfrom').value=L.f||''}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
+function read(){var out=[];for(var i=0;i<4;i++){var q=$('q'+i).value.trim(),o=[],a=0,r=document.querySelector('input[name=c'+i+']:checked');var ci=r?+r.value:0,ok=false;for(var j=0;j<4;j++){var v=$('o'+i+'_'+j).value.trim();if(v){if(j===ci){a=o.length;ok=true}o.push(v)}}
+if(!q)return'Câu '+(i+1)+': chưa nhập câu hỏi.';if(o.length<2)return'Câu '+(i+1)+': cần ít nhất 2 đáp án.';if(!ok)return'Câu '+(i+1)+': đáp án đúng đang để trống.';out.push({q:q,o:o,a:a})}return out}
+$('savebtn').onclick=function(){var r=read();if(typeof r==='string'){$('err').textContent=r;return}$('err').textContent='';Q=r;save();L=readL();try{localStorage.setItem(KEYL,JSON.stringify(L))}catch(e){}showIntro()};
+$('cancel').onclick=function(){showIntro()};
+$('playbtn').onclick=function(){play()};
+$('teach').onclick=function(){toSetup()};
+var AC=null,muted=false,buzzN=null,mt=null,mi=0,MN=[523,659,784,659,523,659,784,1047,988,784,659,784,880,784,659,523];
+function ac(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(AC&&AC.state==='suspended'){try{AC.resume()}catch(e){}}return AC}
+function tone(f,d,ty,v,w){if(muted)return;var a=ac();if(!a||a.state!=='running')return;var t=a.currentTime+(w||0),o=a.createOscillator(),g=a.createGain();o.type=ty||'sine';o.frequency.setValueAtTime(f,t);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v||.2,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+d+.05)}
+function sweep(a1,b1,d,ty,v){if(muted)return;var c=ac();if(!c||c.state!=='running')return;var o=c.createOscillator(),g=c.createGain(),t=c.currentTime;o.type=ty;o.frequency.setValueAtTime(a1,t);o.frequency.exponentialRampToValueAtTime(b1,t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+d+.05)}
+var sfx={click:function(){tone(700,.07,'triangle',.12)},ok:function(){tone(523,.14,'sine',.22);tone(659,.14,'sine',.22,.12);tone(784,.3,'sine',.22,.24)},bad:function(){tone(200,.25,'sawtooth',.12);tone(150,.35,'sawtooth',.12,.2)},fly:function(){sweep(300,1400,.9,'sine',.12)},alert:function(){tone(880,.12,'square',.08);tone(880,.12,'square',.08,.2)},win:function(){[523,659,784,1047].forEach(function(f,i){tone(f,.3,'triangle',.2,i*.15)});tone(1047,.7,'triangle',.2,.65)},tada:function(){[523,659,784].forEach(function(f){tone(f,.9,'triangle',.18)});[1047,1319,1568].forEach(function(f,i){tone(f,.25,'sine',.12,.3+i*.12)})}};
+function music(on){clearInterval(mt);mt=null;if(on){mi=0;mt=setInterval(function(){var f=MN[mi%MN.length]/2;tone(f,.7,'sine',.05);if(mi%4===0)tone(f/2,1.4,'sine',.04);mi++},520)}}
+function startBuzz(){stopBuzz();if(muted)return;var c=ac();if(!c)return;var o=c.createOscillator(),l=c.createOscillator(),lg=c.createGain(),g=c.createGain(),f=c.createBiquadFilter(),t=c.currentTime;o.type='sawtooth';o.frequency.value=190;l.frequency.value=22;lg.gain.value=25;l.connect(lg);lg.connect(o.frequency);f.type='bandpass';f.frequency.value=500;g.gain.setValueAtTime(.001,t);g.gain.linearRampToValueAtTime(.12,t+3.5);o.connect(f);f.connect(g);g.connect(c.destination);o.start();l.start();buzzN={o:o,l:l,g:g}}
+function stopBuzz(){if(buzzN&&AC){var t=AC.currentTime;try{buzzN.g.gain.cancelScheduledValues(t);buzzN.g.gain.setTargetAtTime(.0001,t,.05);buzzN.o.stop(t+.3);buzzN.l.stop(t+.3)}catch(e){}}buzzN=null}
+document.addEventListener('pointerdown',function(){ac()});
+document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button');if(b&&b.id!=='snd'&&!b.classList.contains('ans'))sfx.click()});
+$('snd').onclick=$('snd2').onclick=function(){muted=!muted;$('snd').textContent=$('snd2').textContent=muted?'🔇':'🔊';if(muted){stopBuzz();music(false)}};
+var MQ=[[-40,40,130,130],[440,20,188,138],[-40,230,232,142],[440,200,262,160]],tm;
+function mosq(){var h='';MQ.forEach(function(m){h+='<g class="m" style="--sx:'+m[0]+'px;--sy:'+m[1]+'px;--ex:'+m[2]+'px;--ey:'+m[3]+'px"><g transform="scale(1.5)"><g transform="rotate(-25 1 -4)"><ellipse class="wing" cx="1" cy="-4" rx="7" ry="2.6" fill="#fff" opacity=".8"/></g><g transform="rotate(20 3 -4)"><ellipse class="wing" cx="3" cy="-4" rx="6" ry="2.4" fill="#fff" opacity=".7"/></g><ellipse rx="7" ry="3" fill="#2b2b3a"/><circle cx="-8" r="2.4" fill="#2b2b3a"/><circle cx="-9" cy="-.6" r="1" fill="#f33"/><path d="M-9 1 L-12 10" stroke="#2b2b3a" stroke-width="1.2"/><path d="M-3 3 l-2 5 M1 3 l0 6 M4 3 l2 5" stroke="#2b2b3a" stroke-width=".8"/></g></g><text class="bang" x="'+(m[2]-4)+'" y="'+(m[3]-30)+'" fill="#ff5a5a" font-size="20" font-weight="800">!</text>'});$('mq').innerHTML=h}
+function showIntro(){clearTimeout(tm);stopBuzz();music(false);$('setup').classList.add('hidden');$('game').classList.add('hidden');$('intro').classList.remove('hidden');var s=$('iscene');s.classList.remove('go','frozen');$('cta').classList.remove('show');mosq();void s.offsetWidth;s.classList.add('go');startBuzz();tm=setTimeout(function(){s.classList.add('frozen');$('cta').classList.add('show');stopBuzz();sfx.alert()},4300);window.scrollTo(0,0)}
+function toSetup(){G++;clearTimeout(tm);stopBuzz();music(false);$('qmodal').classList.add('hidden');leaveFS();$('game').classList.add('hidden');$('intro').classList.add('hidden');$('setup').classList.remove('hidden');buildForms();window.scrollTo(0,0)}
+$('edit').onclick=$('edit2').onclick=toSetup;
+$('again').onclick=play;
+var done=[0,0,0,0],left=4,G=0;
+function badges(){for(var i=0;i<4;i++){(function(n){var t=$('t'+n),g=t.querySelector('.bob > g');if(g&&!g.querySelector('.bdg'))g.insertAdjacentHTML('beforeend','<g class="bdg"><circle cy="-3" r="14" fill="#000" fill-opacity="0"/><circle cy="-13" r="5.8" fill="#ffd34d" stroke="#7a4e32" stroke-width=".8"/><text y="-10.4" text-anchor="middle" font-size="8" font-weight="800" fill="#3a2350">'+(n+1)+'</text></g>');t.onclick=function(){openQ(n)}})(i)}}
+function hint(){$('qnum').style.display='';$('qnum').textContent='Còn '+left+' con muỗi';$('qtext').textContent='👆 Bấm vào con muỗi có số để xem câu hỏi!';$('answers').innerHTML='';$('msg').textContent=''}
+function enterFS(){var g=$('game');g.classList.add('fs');try{var r=g.requestFullscreen||g.webkitRequestFullscreen;if(r){var pr=r.call(g);if(pr&&pr.catch)pr.catch(function(){})}}catch(e){}}
+function leaveFS(){$('game').classList.remove('fs');try{if(document.fullscreenElement||document.webkitFullscreenElement){var x=document.exitFullscreen||document.webkitExitFullscreen;var pr=x.call(document);if(pr&&pr.catch)pr.catch(function(){})}}catch(e){}}
+function exitGame(){G++;clearTimeout(window.rt);$('qmodal').classList.add('hidden');leaveFS();showIntro()}
+function fsChange(){if(!document.fullscreenElement&&!document.webkitFullscreenElement&&!$('game').classList.contains('hidden')&&$('game').classList.contains('fs'))exitGame()}
+document.addEventListener('fullscreenchange',fsChange);document.addEventListener('webkitfullscreenchange',fsChange);
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('game').classList.contains('hidden'))exitGame()});
+$('exitbtn').onclick=exitGame;
+$('mclose').onclick=function(){$('qmodal').classList.add('hidden')};
+function play(){G++;clearTimeout(tm);clearTimeout(window.rt);stopBuzz();music(false);done=[0,0,0,0];left=4;cur=-1;$('reveal').classList.add('hidden');$('qmodal').classList.add('hidden');$('setup').classList.add('hidden');$('intro').classList.add('hidden');$('game').classList.remove('hidden');$('end').style.display='none';$('back').style.display='';$('pr').classList.remove('woke');$('scene').classList.remove('woke');for(var i=0;i<4;i++)$('t'+i).classList.remove('gone');var d='';for(i=0;i<4;i++)d+='<div class="dot" id="d'+i+'"></div>';$('dots').innerHTML=d;badges();hint();enterFS();window.scrollTo(0,0)}
+function openQ(i){if(done[i]||left===0)return;cur=i;var x=Q[i];sfx.click();$('mnum').textContent='🦟 Con muỗi số '+(i+1);$('mtext').textContent=x.q;$('mmsg').textContent='';var h='';x.o.forEach(function(t,j){h+='<button class="ans" data-j="'+j+'">'+'ABCD'[j]+'. '+esc(t)+'</button>'});$('mans').innerHTML=h;Array.prototype.forEach.call($('mans').children,function(b){b.onclick=function(){pick(b)}});$('qmodal').classList.remove('hidden')}
+function pick(b){var j=+b.getAttribute('data-j'),i=cur,g0=G;if(j===Q[i].a){sfx.ok();setTimeout(sfx.fly,300);b.classList.add('right');Array.prototype.forEach.call($('mans').children,function(x){x.disabled=true});$('mmsg').style.color='var(--ok)';$('mmsg').textContent='🎉 Chính xác! Con muỗi số '+(i+1)+' đã bay đi!';done[i]=1;left--;$('d'+i).classList.add('on');setTimeout(function(){if(g0!==G)return;$('qmodal').classList.add('hidden');$('t'+i).classList.add('gone');if(left>0)hint();else win()},1300)}else{sfx.bad();b.classList.add('wrong');b.disabled=true;$('mmsg').style.color='var(--bad)';$('mmsg').textContent='Chưa đúng, thử lại nhé! 💪'}}
+function readL(){return{m:$('lmsg').value.trim(),f:$('lfrom').value.trim()}}
+function reveal(){var m=L.m||'Em cảm ơn các anh chị đã giúp em có một giấc ngủ ngon. Em chúc các anh chị có một cuối tuần thật vui vẻ! 💖';$('rh').textContent='Bên trong hộp quà bí ẩn là...';$('rn').textContent='Em cảm ơn các anh chị! 💖';$('rm').textContent=m;$('rf').textContent=L.f?'— '+L.f+' —':'— Em bé 👶 —';$('reveal').classList.remove('hidden');$('msg').textContent='';music(false);sfx.tada();confetti();$('reveal').scrollIntoView({behavior:'smooth',block:'center'})}
+function confetti(){var e=['🎉','✨','👑','🎊','⭐','💖'];for(var i=0;i<40;i++){var s=document.createElement('span');s.className='cf';s.textContent=e[i%6];s.style.left=Math.random()*100+'%';s.style.animationDelay=Math.random()*1.5+'s';$('game').appendChild(s);setTimeout((function(x){return function(){x.remove()}})(s),5500)}}
+function lock(){Array.prototype.forEach.call($('answers').children,function(b){b.disabled=true})}
+function win(){sfx.win();music(true);$('scene').classList.add('woke');$('pr').classList.add('woke');$('qnum').style.display='none';$('qtext').textContent='🎉 Chúc mừng! Em bé đã ngủ ngon nhờ các bạn!';$('answers').innerHTML='';$('msg').style.color='var(--ok)';$('msg').textContent='Em bé ngủ ngon rồi, thức dậy, đứng lên và nhún nhảy mừng vui! 👶';window.rt=setTimeout(function(){$('answers').innerHTML='<div class="center"><button id="revbtn" style="font-size:1.15rem;padding:13px 28px">🎁 Hộp quà bí ẩn</button></div>';$('revbtn').onclick=function(){$('answers').innerHTML='';reveal()}},3500);$('end').style.display='';$('back').style.display='none'}
+buildForms();showIntro();
+</script>
+</body>
+</html>
